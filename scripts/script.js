@@ -28,4 +28,4 @@ function handleFormSubmit(evt) {
   closePopup(popupProfile);
 }
 
-popupProfile.addEventListener('submit', handleFormSubmit);
+formElement.addEventListener('submit', handleFormSubmit);

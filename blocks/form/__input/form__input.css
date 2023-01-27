@@ -4,8 +4,8 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  width: 358px;
-  height: 14px;
+  width: 100%;
+  min-height: 14px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   color: #000000;
@@ -15,6 +15,6 @@
 
 @media screen and (max-width: 767px) {
   .form__input {
-    width: 238px;
+    max-width: 238px;
   }
 }
