@@ -1,6 +1,7 @@
 .cards__info {
+  box-sizing: border-box;
+  padding: 23px 21px 0;
   display: flex;
   justify-content: space-between;
-  padding: 25px 15px 31px 21px;
-  max-width: 246px;
+  align-content: center;
 }

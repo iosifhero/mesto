@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
-  <title>Место</title>
+  <title>Mesto</title>
 </head>
 
 <body class="page">
@@ -27,66 +27,58 @@
       <button class="profile__add-button" type="button"></button>
     </section>
     <section class="cards">
-      <div class="cards__item">
-        <img class="cards__image" src="./images/cards-image-1.jpg" alt="Сараус">
-        <div class="cards__info">
-          <h2 class="cards__name">Сараус</h2>
-          <button class="cards__button" type="button"></button>
-        </div>
-      </div>
-      <div class="cards__item">
-        <img class="cards__image" src="./images/cards-image-2.jpg" alt="Исландия">
-        <div class="cards__info">
-          <h2 class="cards__name">Исландия</h2>
-          <button class="cards__button" type="button"></button>
-        </div>
-      </div>
-      <div class="cards__item">
-        <img class="cards__image" src="./images/cards-image-3.jpg" alt="Сандерленд">
-        <div class="cards__info">
-          <h2 class="cards__name">Сандерленд</h2>
-          <button class="cards__button" type="button"></button>
-        </div>
-      </div>
-      <div class="cards__item">
-        <img class="cards__image" src="./images/cards-image-4.jpg" alt="Гора Эльбрус">
-        <div class="cards__info">
-          <h2 class="cards__name">Гора Эльбрус</h2>
-          <button class="cards__button" type="button"></button>
-        </div>
-      </div>
-      <div class="cards__item">
-        <img class="cards__image" src="./images/cards-image-5.jpg" alt="Домбай">
-        <div class="cards__info">
-          <h2 class="cards__name">Домбай</h2>
-          <button class="cards__button" type="button"></button>
-        </div>
-      </div>
-      <div class="cards__item">
-        <img class="cards__image" src="./images/cards-image-6.jpg" alt="Карачаево-Черкесия">
-        <div class="cards__info">
-          <h2 class="cards__name">Карачаево-Черкесия</h2>
-          <button class="cards__button" type="button"></button>
-        </div>
-      </div>
+      <ul class="cards__list"></ul>
     </section>
   </main>
   <footer class="footer">
-    <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
+    <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
   </footer>
-  <div class="popup">
+  <div class="popup popup-edit">
     <div class="popup__container">
       <form class="form" name="info">
         <h2 class="form__title">Редактировать профиль</h2>
-        <fieldset class="form__fieldset">
+        <div class="form__fieldset">
           <input class="form__input" type="text" placeholder="Жак-Ив Кусто" name="name">
           <input class="form__input" type="text" placeholder="Исследователь океана" name="job">
           <button class="form__save" type="submit">Сохранить</button>
-        </fieldset>
-        <button type="button" class="popup__close" aria-label="Закрыть окно"></button>
+        </div>
+        <button class="popup__close" type="button" aria-label="Закрыть окно"></button>
       </form>
     </div>
   </div>
+  <div class="popup popup-add">
+    <div class="popup__container">
+      <form class="form" name="photo">
+        <h2 class="form__header">Новое место</h2>
+        <div class="form__fieldset">
+          <input class="form__input" type="text" placeholder="Название" name="name">
+          <input class="form__input" type="url" placeholder="Ссылка на картинку" name="link">
+          <button class="form__save">Создать</button>
+        </div>
+        <button class="popup__close" type="button" aria-label="Закрыть окно"></button>
+      </form>
+    </div>
+  </div>
+  <div class="popup popup_image popup-site">
+    <div class="site">
+      <div class="site__figure">
+        <img class="site__photo" alt="" src=" ">
+        <h2 class="site__caption"></h2>
+        <button class="popup__close" type="button" aria-label="Закрыть окно"></button>
+      </div>
+    </div>
+  </div>
+  <template class="template">
+    <li class="cards__element">
+      <button class="cards__delete-button" type="button" aria-label="Удалить фотографию"></button>
+      <img class="cards__image" src=" " alt="">
+      <div class="cards__info">
+        <h2 class="cards__name"></h2>
+        <button class="cards__like-button" type="button" aria-label="Поставить лайк"></button>
+      </div>
+    </li>
+  </template>
+  <script src="./scripts/cards.js"></script>
   <script src="./scripts/script.js"></script>
 </body>
 
