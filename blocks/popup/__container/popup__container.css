@@ -2,9 +2,6 @@
   max-width: 430px;
   background: #FFFFFF;
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
   box-sizing: border-box;
   border-radius: 10px;
