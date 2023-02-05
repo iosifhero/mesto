@@ -1,47 +1,47 @@
 const popupProfileOpenButton = document.querySelector('.profile__edit-button');
 const popupProfile = document.querySelector('.popup-edit');
-const popupProfileCloseButton = document.querySelector('.popup__close');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 const formProfile = document.querySelector('[name="info"]');
+const formAddCard = document.querySelector('.form_add-card');
 const nameInput = popupProfile.querySelector('[name="name"]');
 const jobInput = popupProfile.querySelector('[name="job"]');
-
+const popupProfileSendButton = popupProfile.querySelector('[name="send"]');
 const popupProfileAddButton = document.querySelector('.profile__add-button');
 const popupSite = document.querySelector('.popup-add');
-const popupSiteCloseButton = popupSite.querySelector('.popup__close');
+const popupAddCardSendButton = popupSite.querySelector('[name="send"]');
 const formSite = document.querySelector('[name="photo"]');
 const siteInput = popupSite.querySelector('[name="name"]');
 const linkInput = popupSite.querySelector('[name="link"]');
-
 const popupPhoto = document.querySelector('.popup-site');
-const popupPhotoCloseButton = popupPhoto.querySelector('.popup__close');
 const popupPhotoPic = popupPhoto.querySelector('.site__photo');
 const popupCaption = popupPhoto.querySelector('.site__caption');
-
+const formInputsError = document.querySelectorAll('.form__input-error');
+const formInputs = document.querySelectorAll('.form__input');
+const popups = document.querySelectorAll('.popup');
+const closeButton = document.querySelectorAll('.popup__close');
 const cardsContainer = document.querySelector('.cards__list');
 const cardsTemplate = document
   .querySelector('.template')
   .content
   .querySelector('.cards__element');
 
+const config = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__submit',
+  inputErrorClass: 'form__input_type_error',
+}
+
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  window.addEventListener('keyup', addListenerEsc);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  window.addEventListener('keyup', addListenerEsc);
 }
-
-popupProfileOpenButton.addEventListener('click', (evt) => {
-  openPopup(popupProfile);
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
-})
-
-popupProfileCloseButton.addEventListener('click', (evt) => {
-  closePopup(popupProfile);
-})
 
 function handleFormSubmit(evt) {
   evt.preventDefault();
@@ -75,10 +75,10 @@ function createCard({ name, link }) {
   });
 
   cardImage.addEventListener('click', function (evt) {
-    openPopup(popupPhoto);
     popupPhotoPic.src = link;
     popupPhotoPic.alt = name;
     popupCaption.textContent = name;
+    openPopup(popupPhoto);
   });
 
   return card;
@@ -100,19 +100,54 @@ function addCard(evt) {
 
 formSite.addEventListener('submit', addCard);
 
+function addListenerEsc(evt) {
+  const key = evt.key;
+  if (key == "Escape") {
+    closePopup(document.querySelector('.popup_opened'));
+  };
+};
+
+function clearErrorForm(form, config) {
+  const inputList = Array.from(form.querySelectorAll(config.inputSelector));
+
+  for (const input of inputList) {
+    hideInputError(form, input, config);
+  }
+
+  form.reset();
+}
+
+function closePopupOutside(event, popup) {
+  if (event == popup) {
+    closePopup(popup);
+  };
+}
+
+popupProfileOpenButton.addEventListener('click', (evt) => {
+  openPopup(popupProfile);
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
+  popupProfileSendButton.setAttribute("disabled", true)
+})
+
+popupProfileAddButton.addEventListener('click', (evt) => {
+  openPopup(popupSite);
+  clearErrorForm(formAddCard, config);
+  popupAddCardSendButton.setAttribute("disabled", true);
+})
+
 initialCards.forEach(item => {
   const cardHtml = createCard(item);
   cardsContainer.append(cardHtml);
 });
 
-popupProfileAddButton.addEventListener('click', (evt) => {
-  openPopup(popupSite);
-})
+closeButton.forEach((button) => {
+  const popup = button.closest('.popup');
+  button.addEventListener('click', () => closePopup(popup));
+});
 
-popupSiteCloseButton.addEventListener('click', (evt) => {
-  closePopup(popupSite);
-})
-
-popupPhotoCloseButton.addEventListener('click', (evt) => {
-  closePopup(popupPhoto);
-})
+popups.forEach((popup) => {
+  popup.addEventListener('mousedown', function (event) {
+    closePopupOutside(event.target, popup);
+  });
+});
