@@ -1,12 +1,3 @@
-const formInputsError = document.querySelectorAll('.form__input-error');
-function clearErrorForm() {
-  for (let i = 0; i < formInputsError.length; i++) {
-    formInputsError[i].textContent = '';
-    formInputsError[i].classList.remove('form__input-error_active');
-    formInputs[i].classList.remove('form__input_type_error');
-  }
-}
-
 const showInputError = (formElement, inputElement, errorMessage, object) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(object.inputErrorClass);
